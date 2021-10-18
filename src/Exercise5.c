@@ -11,10 +11,21 @@ ______________________________________
 #include <stdlib.h>
 #include <math.h>
 
+
 void Ex5(int arr[], int n){
 	//Your codes here
+	int k = 0, e[n];
+	for(int i = 0; i < n; i++){
+		if(arr[i] > 0) printf("%d ", arr[i]);
+		else{
+			e[k] = arr[i];
+			k++;
+		}
+	}
 	
+	for(int i = 0; i < k; i++) printf("%d ", e[i]);
 }
+
 
 int main(int argc, char *argv[]) {
 	//testing variable, applying it to your algorithm for auto-evaluating
@@ -23,8 +34,9 @@ int main(int argc, char *argv[]) {
 	for(i=0; i<argc;i++){
 		testcase[i] = atoi(argv[i+1]);
 	}
-	
 	Ex5(testcase, argc);
+	
+	
 	
 	return 0;
 }
