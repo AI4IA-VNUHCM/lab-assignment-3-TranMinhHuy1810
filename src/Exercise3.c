@@ -12,12 +12,55 @@ Ex:
 #include <stdlib.h>
 #include <math.h>
 
-void Ex3(int in_arr[], int n){
-	//Your codes here
-	
+void longestIncSub(int arr[], int n){
+	int max = 1, len = 1, maxIndex = 0;
+    for (int i=1; i<n; i++){
+        if (arr[i] > arr[i-1]){
+            len++;
+        }else{
+            if (max < len){
+                max = len;
+                maxIndex = i - max;
+            }
+            len = 1;
+        }
+    }
+    if (max < len){
+        max = len;
+        maxIndex = n - max;
+    }
+    for (int i=maxIndex; i<max+maxIndex; i++){
+        printf("%d ",arr[i]);
+    }
 }
+void longestDecsub(int arr[], int n){
+	int max = 1, len = 1, maxIndex = 0;
+    for (int i = 1; i < n; i++){
+        if (arr[i] > arr[i + 1])
+            len++;
+        else{
+            if (max < len){
+                max = len;
+                maxIndex = i - max;
+            }       
+            len = 1;   
+        }   
+    }
+    if (max < len){
+        max = len;
+        maxIndex = n - max;
+    }
+    for (int i = maxIndex + 1; ((i < max + maxIndex + 1) && (i < n)); i++) printf("%d ", arr[i]);
+}
+void Ex3(int in_arr[], int n){
+	printf("Increasing ");
+	longestIncSub(in_arr,n);
+	printf("Decreasing ");
+	longestDecsub(in_arr,n);
+}
+	
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]){
 	//testing variable, applying it to your algorithm for auto-evaluating
 	argc--;
 	int testcase[argc],i;
